@@ -8,5 +8,6 @@ namespace PersonagemAnimado.Application.Repository
 {
     public interface IPersonagemRepository: IRepository<Personagem>
     {
+
     }
 }

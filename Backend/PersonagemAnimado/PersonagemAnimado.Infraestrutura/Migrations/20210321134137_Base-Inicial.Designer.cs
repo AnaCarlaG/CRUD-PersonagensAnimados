@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonagemAnimado.Infraestrutura.Data;
 
 namespace PersonagemAnimado.Infraestrutura.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20210321134137_Base-Inicial")]
+    partial class BaseInicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,9 +56,6 @@ namespace PersonagemAnimado.Infraestrutura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("FilmeID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Genero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,8 +69,6 @@ namespace PersonagemAnimado.Infraestrutura.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("FilmeID");
-
                     b.ToTable("Personagem");
                 });
 
@@ -79,7 +76,7 @@ namespace PersonagemAnimado.Infraestrutura.Migrations
                 {
                     b.HasOne("PersonagemAnimado.Domain.Model.Filme", "Filme")
                         .WithMany("Personagens")
-                        .HasForeignKey("FilmeID")
+                        .HasForeignKey("id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

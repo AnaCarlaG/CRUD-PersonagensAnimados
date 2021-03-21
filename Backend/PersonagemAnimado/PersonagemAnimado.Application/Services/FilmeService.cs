@@ -33,7 +33,7 @@ namespace PersonagemAnimado.Application.Services
         public IEnumerable<FilmeVM> ObterTodos()
         {
 
-            IEnumerable<Filme> lista = _filmeRepository.BuscarTodos();
+            IEnumerable<Filme> lista = _filmeRepository.BuscarTodosComPersonagem();
             return _mapper.Map<IEnumerable<FilmeVM>>(lista);
         }
 

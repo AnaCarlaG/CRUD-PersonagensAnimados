@@ -12,5 +12,6 @@ namespace PersonagemAnimado.Domain.Model
         public string? Poderes { get; set; }
 
         public Filme Filme { get; set; }
+        public Guid FilmeID { get; set; }
     }
 }

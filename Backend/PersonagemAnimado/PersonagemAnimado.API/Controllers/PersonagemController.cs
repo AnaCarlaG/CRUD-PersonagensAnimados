@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PersonagemAnimado.Application.Interfaces;
-using PersonagemAnimado.Application.Validadores;
 using PersonagemAnimado.Application.ViewModels;
-using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,22 +11,21 @@ namespace PersonagemAnimado.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FilmeController : Controller
+    public class PersonagemController : ControllerBase
     {
-        private readonly IFilmeService _filmeService;
+        private readonly IPersonagemService _personagemService;
 
-        public FilmeController(IFilmeService filmeService)
+        public PersonagemController(IPersonagemService personagemService)
         {
-            this._filmeService = filmeService;
+            this._personagemService = personagemService;
         }
-
         [HttpPost]
-        public IActionResult Persistir([FromBody] FilmeVM filmeVM)
+        public IActionResult Persistir([FromBody] PersonagemVM personagemVM)
         {
             try
             {
-                _filmeService.Persistir(filmeVM);
-                return Created("", filmeVM);
+                _personagemService.Persistir(personagemVM);
+                return Created("", personagemVM);
             }
             catch (Exception ex)
             {
@@ -35,43 +33,41 @@ namespace PersonagemAnimado.API.Controllers
             }
         }
         [HttpGet]
-        public IEnumerable<FilmeVM> ObterTodos()
+        public IEnumerable<PersonagemVM> ObterTodos()
         {
-            return _filmeService.ObterTodos();
+            return _personagemService.ObterTodos();
         }
-
         [HttpGet]
         [Route("obter-por-id/{id}")]
-        public FilmeVM ObterPorId(Guid id)
+        public PersonagemVM ObterPorId(Guid id)
         {
-            return _filmeService.ObterPorId(id);
+            return _personagemService.ObterPorId(id);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id) 
         {
             try
             {
-                _filmeService.Delete(id);
+                _personagemService.Delete(id);
                 return Ok(true);
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 return BadRequest(ex.Message);
             }
         }
         [HttpPut]
-        public IActionResult Atualizar(FilmeVM filmeVM)
+        public IActionResult Atualizar(PersonagemVM personagemVM) 
         {
             try
             {
-                _filmeService.Persistir(filmeVM);
+                _personagemService.Persistir(personagemVM);
                 return Ok(true);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
     }
 }

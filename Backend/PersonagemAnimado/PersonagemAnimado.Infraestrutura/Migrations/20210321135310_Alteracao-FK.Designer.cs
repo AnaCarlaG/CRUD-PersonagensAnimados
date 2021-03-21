@@ -10,8 +10,8 @@ using PersonagemAnimado.Infraestrutura.Data;
 namespace PersonagemAnimado.Infraestrutura.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210321122512_Base-Inicial")]
-    partial class BaseInicial
+    [Migration("20210321135310_Alteracao-FK")]
+    partial class AlteracaoFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,9 @@ namespace PersonagemAnimado.Infraestrutura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("FilmeID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Genero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,6 +72,8 @@ namespace PersonagemAnimado.Infraestrutura.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("FilmeID");
+
                     b.ToTable("Personagem");
                 });
 
@@ -76,7 +81,7 @@ namespace PersonagemAnimado.Infraestrutura.Migrations
                 {
                     b.HasOne("PersonagemAnimado.Domain.Model.Filme", "Filme")
                         .WithMany("Personagens")
-                        .HasForeignKey("id")
+                        .HasForeignKey("FilmeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

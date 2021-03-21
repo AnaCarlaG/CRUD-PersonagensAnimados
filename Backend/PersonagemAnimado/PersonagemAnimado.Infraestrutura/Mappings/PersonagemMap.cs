@@ -18,7 +18,7 @@ namespace PersonagemAnimado.Infraestrutura.Mappings
             builder.Property(x => x.Descricao).IsRequired();
             builder.Property(x => x.Poderes);
 
-            builder.HasOne(x => x.Filme).WithMany(x => x.Personagens).HasForeignKey(x => x.id);
+            builder.HasOne(x => x.Filme).WithMany(x => x.Personagens);
         }
     }
 }
