@@ -35,9 +35,10 @@ namespace PersonagemAnimado.API.Controllers
             }
         }
         [HttpGet]
-        public IEnumerable<FilmeVM> ObterTodos()
+        public IList<FilmeVM> ObterTodos()
         {
-            return _filmeService.ObterTodos();
+            var result = _filmeService.ObterTodos();
+            return result;
         }
 
         [HttpGet]

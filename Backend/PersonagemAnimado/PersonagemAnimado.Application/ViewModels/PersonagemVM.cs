@@ -15,6 +15,7 @@ namespace PersonagemAnimado.Application.ViewModels
         [Required]
         public string Descricao { get; set; }
         public string? Poderes { get; set; }
+        [Required]
         public Guid FilmeId  {get;set;}
     }
 }

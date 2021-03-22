@@ -9,6 +9,6 @@ namespace PersonagemAnimado.Application.Repository
     public interface IFilmeRepository: IRepository<Filme>
     {
 
-        IEnumerable<Filme> BuscarTodosComPersonagem();
+        IList<Filme> BuscarTodosComPersonagem();
     }
 }

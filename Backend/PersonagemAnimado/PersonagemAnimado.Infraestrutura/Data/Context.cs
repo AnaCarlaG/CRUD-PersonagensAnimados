@@ -9,8 +9,8 @@ namespace PersonagemAnimado.Infraestrutura.Data
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
 
-        DbSet<Filme> Filme { get; set; }
-        DbSet<Personagem> Personagem { get; set; }
+        public DbSet<Filme> Filme { get; set; }
+        public DbSet<Personagem> Personagem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

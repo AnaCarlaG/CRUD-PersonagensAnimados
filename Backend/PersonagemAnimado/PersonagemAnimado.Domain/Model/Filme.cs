@@ -12,6 +12,6 @@ namespace PersonagemAnimado.Domain.Model
         public int ano { get; set; }
 
 
-        public List<Personagem> Personagens { get; set; }
+        public IList<Personagem> Personagens { get; set; }
     }
 }

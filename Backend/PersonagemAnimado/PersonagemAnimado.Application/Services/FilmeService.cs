@@ -5,6 +5,7 @@ using PersonagemAnimado.Application.ViewModels;
 using PersonagemAnimado.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PersonagemAnimado.Application.Services
@@ -30,11 +31,11 @@ namespace PersonagemAnimado.Application.Services
             return _mapper.Map<FilmeVM>(_filmeRepository.BuscarPorId(id));
         }
 
-        public IEnumerable<FilmeVM> ObterTodos()
+        public IList<FilmeVM> ObterTodos()
         {
 
-            IEnumerable<Filme> lista = _filmeRepository.BuscarTodosComPersonagem();
-            return _mapper.Map<IEnumerable<FilmeVM>>(lista);
+            IList<Filme> lista = _filmeRepository.BuscarTodosComPersonagem().ToList();            
+            return _mapper.Map<List<FilmeVM>>(lista);
         }
 
         public void Persistir(FilmeVM filmeVM)

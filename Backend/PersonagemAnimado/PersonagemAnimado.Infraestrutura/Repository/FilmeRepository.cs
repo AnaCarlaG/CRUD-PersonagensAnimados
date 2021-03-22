@@ -19,9 +19,12 @@ namespace PersonagemAnimado.Infraestrutura.Repository
         {
             this._context = context;
         }
-        public IEnumerable<Filme> BuscarTodosComPersonagem()
+
+        public IList<Filme> BuscarTodosComPersonagem()
         {
-            return _context.Set<Filme>().Include(x => x.Personagens);
+            var result = this._context.Filme.Include(x => x.Personagens).ToList();
+            return result;
         }
+
     }
 }

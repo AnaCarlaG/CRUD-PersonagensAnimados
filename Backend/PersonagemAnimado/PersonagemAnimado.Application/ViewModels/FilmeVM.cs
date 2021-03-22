@@ -16,5 +16,7 @@ namespace PersonagemAnimado.Application.ViewModels
         [Required]
         public string Descricao { get; set; }
         public int? ano { get; set; }
+
+        public List<PersonagemVM> Personagens { get; set; }
     }
 }
