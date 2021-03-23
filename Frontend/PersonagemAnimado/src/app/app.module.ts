@@ -15,6 +15,10 @@ import { GeneroComponent } from './genero/genero.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmeService } from './Service/FilmeService/filme.service';
 import { PersonagemService } from './Service/PersonagemService/personagem.service';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import { SharedModule } from './shared/shared.module';
+import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,17 @@ import { PersonagemService } from './Service/PersonagemService/personagem.servic
     HomeComponent,
     FilmeComponent,
     GeneroComponent,
+    FilmeFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot(),
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [FilmeService, PersonagemService],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FilmeComponent } from './filme/filme.component';
@@ -12,6 +13,12 @@ const routes: Routes = [
   },
   {
     path:'filmes', component: FilmeComponent
+  },
+  {
+    path:'adicionar-filme', component: FilmeFormComponent
+  },
+  {
+    path:'editar-filme/:id', component: FilmeFormComponent
   }
 ];
 

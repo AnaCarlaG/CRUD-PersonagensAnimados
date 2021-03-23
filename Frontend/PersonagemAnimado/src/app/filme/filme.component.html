@@ -1,14 +1,14 @@
 <div id="tabelaFilme" class="card">
-    <div class="card-header" style="padding-top: 20%;">
+    <div class="card-header" style="padding-top: 8%;">
         <div class="float-left">
             <h4>Lista de Filmes</h4>
         </div>
         <div class="float-right">
-            <button type="button" class="btn btn-primary" [routerLink]="['/routePath']" >Adicionar</button>
+            <button type="button" class="btn btn-primary" routerLink="adicionar-filme" >Adicionar</button>
         </div>
     </div>
     <div class="card-body">
-        <table class="table table-hover">
+        <table class="table table-hover" *ngIf="filmes$ | async as filmes; else loading">
             <thead>
                 <tr>
                     <th>Filme</th>
@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let item of filmes">
+                    <td>{{item.nome}}</td>
+                    <td>{{item.genero}}</td>
                     <td>
                         <span class="float-right">
                             <button class="btn btn-outline-warning mb-1 btn-sm">Atualizar</button>
@@ -29,5 +29,13 @@
                 </tr>
             </tbody>
         </table>
+        <<ng-template #loading>
+            <div *ngIf="error$ | async; else loadingNoError">
+                Não há nenhum filme cadastrado. Favor cadastrar um novo filme.
+            </div>
+            <<ng-template #loadingNoError>
+            <span> Carregando filmes... </span>
+            </ng-template>
+        </ng-template>
     </div>
 </div>

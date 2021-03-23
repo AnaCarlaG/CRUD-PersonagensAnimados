@@ -3,12 +3,12 @@ import { environment } from 'src/environments/environment';
 
 export class BaseService{
     //protected apiControllerURL;
-    protected ApiURL = 'https://localhost:44336/';
+    protected readonly ApiURL;
 
     constructor(protected http: HttpClient, rota: string)
     {
         //this.apiControllerURL = environment.urlGateway + rota;
-        this.ApiURL = this.ApiURL + rota;
+        this.ApiURL = environment.urlApi + rota;
     }
     
     public handleError(error: any){

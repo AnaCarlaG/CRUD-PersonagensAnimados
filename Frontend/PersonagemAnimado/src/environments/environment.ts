@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
 
-  // urlGateway: '/api',
-  // urlApi: 'https://localhost:44336/'
+  urlGateway: '/api',
+  urlApi: 'https://localhost:44336/'
 };
 
 

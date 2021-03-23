@@ -4,6 +4,7 @@ import { BaseService } from '../base.service';
 import { Guid } from "guid-typescript";
 import { Filme } from '../../Model/Filme.model';
 import { Observable } from 'rxjs';
+import {tap, delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class FilmeService extends BaseService {
   }
 
   //Get
-  public ObterTodos() : Observable<any>{
-    return this.http.get<Filme[]>(this.ApiURL);
+  public ObterTodos(){
+    return this.http.get<Filme[]>(this.ApiURL).pipe(delay(2000));
   }
 
   public ObterPorId(id: Guid) {
