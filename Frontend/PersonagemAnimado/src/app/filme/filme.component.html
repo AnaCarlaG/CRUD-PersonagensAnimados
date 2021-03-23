@@ -1,0 +1,33 @@
+<div id="tabelaFilme" class="card">
+    <div class="card-header" style="padding-top: 20%;">
+        <div class="float-left">
+            <h4>Lista de Filmes</h4>
+        </div>
+        <div class="float-right">
+            <button type="button" class="btn btn-primary" [routerLink]="['/routePath']" >Adicionar</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Filme</th>
+                    <th>Genero</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="float-right">
+                            <button class="btn btn-outline-warning mb-1 btn-sm">Atualizar</button>
+                            <button class="btn btn-outline-danger mb-1 btn-sm">Remover</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
