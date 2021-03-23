@@ -20,6 +20,7 @@ namespace PersonagemAnimado.API
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,7 +31,6 @@ namespace PersonagemAnimado.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; });
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("PersonagemAnimado")));
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile));
             services.AddAutoMapper(typeof(ViewModelToDomainMappingProfile));
@@ -39,10 +39,22 @@ namespace PersonagemAnimado.API
             services.AddScoped<IFilmeService, FilmeService>();
             services.AddScoped<IPersonagemService, PersonagemService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
+                {
+                    builder.WithOrigins("http://localhost", "http://localhost:4200");
+                });
+            });
+
+            services.AddControllers().ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PersonagemAnimado.API", Version = "v1" });
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +68,8 @@ namespace PersonagemAnimado.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
