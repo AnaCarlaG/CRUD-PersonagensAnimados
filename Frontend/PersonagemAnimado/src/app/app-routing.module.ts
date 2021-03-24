@@ -15,10 +15,10 @@ const routes: Routes = [
     path:'filmes', component: FilmeComponent
   },
   {
-    path:'adicionar-filme', component: FilmeFormComponent
+    path:'adicionarfilme', component: FilmeFormComponent
   },
   {
-    path:'editar-filme/:id', component: FilmeFormComponent
+    path:'editarfilme/:id', component: FilmeFormComponent
   }
 ];
 

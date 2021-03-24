@@ -19,7 +19,11 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
 import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NgxMaskModule, IConfig} from 'ngx-mask';
 
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ModalModule.forRoot(),
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfig)
   ],
   providers: [FilmeService, PersonagemService],
   bootstrap: [AppComponent]

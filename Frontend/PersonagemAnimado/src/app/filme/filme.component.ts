@@ -1,5 +1,7 @@
+import { Guid } from 'guid-typescript';
 import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 import { BsModalRef, BsModalService, ModalContainerComponent } from 'ngx-bootstrap/modal';
 import { empty, Observable, Subject } from 'rxjs';
@@ -18,25 +20,21 @@ export class FilmeComponent implements OnInit {
 
   filmes$: Observable<Filme[]> = new Observable();
   error$ = new Subject<Boolean>();
-  bsModalRef: BsModalRef = new BsModalRef();
 
-  constructor(private filmeService: FilmeService, private modalService: BsModalService) { }
+  constructor(private filmeService: FilmeService, private router: Router, private route:  ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.filmes$ = this.filmeService.ObterTodos().pipe(catchError(error => 
+    this.filmes$ = this.filmeService.ObterTodos().pipe(catchError(error =>
       {
         console.log(error);
         //this.error$.next(true);
-        this.hadlerError();
         return empty();
       }));
 
   }
-hadlerError(){
-this.bsModalRef = this.modalService.show(AlertComponent);
-this.bsModalRef.content.type = 'danger';
-this.bsModalRef.content.message = 'Erro ao tentar carregar os filmes';
-}
 
+  onEdit(id: Guid){
+    this.router.navigate(["editarfilme",id]);
+  }
 }

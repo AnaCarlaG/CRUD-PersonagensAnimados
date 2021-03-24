@@ -4,7 +4,9 @@
             <h4>Lista de Filmes</h4>
         </div>
         <div class="float-right">
-            <button type="button" class="btn btn-primary" routerLink="adicionar-filme" >Adicionar</button>
+          <a class="btn btn-primary" type="button" href="/adicionarfilme">Adicionar</a>
+            <!-- <button type="button" class="btn btn-primary" [routerLink]="['adicionar-filme']"
+              routerLinkActive="active" >Adicionar</button> -->
         </div>
     </div>
     <div class="card-body">
@@ -12,7 +14,8 @@
             <thead>
                 <tr>
                     <th>Filme</th>
-                    <th>Genero</th>
+                    <th>Gênero</th>
+                    <th>Descrição</th>
                     <th></th>
                 </tr>
             </thead>
@@ -20,9 +23,10 @@
                 <tr *ngFor="let item of filmes">
                     <td>{{item.nome}}</td>
                     <td>{{item.genero}}</td>
+                    <td>{{item.descricao}}</td>
                     <td>
                         <span class="float-right">
-                            <button class="btn btn-outline-warning mb-1 btn-sm">Atualizar</button>
+                            <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit(item.id)">Atualizar</button>
                             <button class="btn btn-outline-danger mb-1 btn-sm">Remover</button>
                         </span>
                     </td>

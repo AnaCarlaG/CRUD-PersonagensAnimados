@@ -4,7 +4,7 @@ import { BaseService } from '../base.service';
 import { Guid } from "guid-typescript";
 import { Filme } from '../../Model/Filme.model';
 import { Observable } from 'rxjs';
-import {tap, delay} from 'rxjs/operators';
+import {tap, delay, take, catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,11 @@ import {tap, delay} from 'rxjs/operators';
 export class FilmeService extends BaseService {
 
 
-  public header: HttpHeaders = new HttpHeaders();
+  public header: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+
+
   constructor(http: HttpClient) {
-    super(http, 'api/Filme')
+    super(http, 'api/Filme/')
   }
 
   //Get
@@ -23,12 +25,15 @@ export class FilmeService extends BaseService {
   }
 
   public ObterPorId(id: Guid) {
-    return this.http.get(this.ApiURL + id);
+    return this.http.get(this.ApiURL+"obter-por-id/" + id).pipe(take(1));
   }
   //Post
   public Cadastrar(filme: Filme)
   {
-    return this.http.post(this.ApiURL,filme);
+   const httpOptions = {
+   headers: this.header
+   }
+    return this.http.post<any>(this.ApiURL,filme, httpOptions).pipe(catchError(this.handleError));
   }
   //Put
   public Atualizar(filme: Filme)

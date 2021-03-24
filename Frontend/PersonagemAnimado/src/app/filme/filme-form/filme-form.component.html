@@ -1,12 +1,73 @@
-<form [formGroup]="form" class="row g-3 needs-validation" novalidate style="padding-top:10px">
+<form
+  [formGroup]="form"
+  class="row g-3 needs-validation"
+  novalidate
+  style="padding-top: 8%"
+>
   <div class="col-md-4">
     <label for="nome" class="form-label">Nome do filme</label>
     <input
       type="text"
       class="form-control"
-      id="nome",
+      id="nome"
       placeholder="Nome do filme"
+      formControlName="nome"
+      [ngClass]="{ 'is-invalid': submitted && hasError('nome') }"
     />
-    <div class="valid-feedback">Looks good!</div>
+    <div
+      class="invalid-feedback"
+      *ngIf="hasError('nome') && hasError('nome')['required']"
+    >
+      Por favor informe um nome de um filme
+    </div>
+    <br />
+    <div class="col-md-4">
+      <label for="genero" class="form-label">Genero</label>
+      <input
+        type="text"
+        class="form-control"
+        id="genero"
+        placeholder="Genero do filme"
+        formControlName="genero"
+        [ngClass]="{ 'is-invalid': submitted && hasError('genero') }"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('genero') && hasError('genero')['required']">Por favor informe um genero de um filme</div>
+    </div>
+    <br />
+    <div class="col-md-6">
+      <label for="ano" class="form-label">Ano</label>
+      <input
+        type="text"
+        [patterns]="customPatterns"
+        mask="0000"
+        [allowNegativeNumbers]="false"
+        class="form-control"
+        id="ano"
+        placeholder="Ano do filme"
+        formControlName="ano"
+      />
+    </div>
+    <br />
+    <div class="col-md-6">
+      <label for="descricao" class="form-label">Descricao</label>
+      <input
+        type="text"
+        class="form-control"
+        id="descricao"
+        placeholder="Descricao do filme"
+        formControlName="descricao"
+        [ngClass]="{ 'is-invalid': submitted && hasError('genero') }"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('descricao') && hasError('descricao')['required']">Por favor informe uma descrição do filme</div>
+    </div>
+    <br />
+    <div style="margin-top: 1%">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        Salvar
+      </button>
+      <button type="button" class="btn btn-dafault" (click)="onCancel()">
+        Cancelar
+      </button>
+    </div>
   </div>
 </form>
