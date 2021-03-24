@@ -33,7 +33,7 @@ export class FilmeService extends BaseService {
    const httpOptions = {
    headers: this.header
    }
-    return this.http.post<any>(this.ApiURL,filme, httpOptions).pipe(catchError(this.handleError));
+    return this.http.post<any>(this.ApiURL,filme, httpOptions).pipe(take(1),catchError(this.handleError));
   }
   //Put
   public Atualizar(filme: Filme)
@@ -43,6 +43,6 @@ export class FilmeService extends BaseService {
   //Delete
   public Delete(id: Guid)
   {
-    return this.http.delete(this.ApiURL+id);
+    return this.http.delete(this.ApiURL+id).pipe(take(1));
   }
 }

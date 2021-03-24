@@ -39,11 +39,9 @@ export class FilmeFormComponent implements OnInit {
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      console.log(id);
       const filme$ = this.filmeService.ObterPorId(
         Guid.parse(id ? id : Guid.create().toString())
       );
-      console.log(filme$);
       filme$.subscribe((filme) => {
         this.updateForm(filme);
       });
