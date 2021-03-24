@@ -43,6 +43,8 @@ namespace PersonagemAnimado.API
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
                 {
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
                     builder.WithOrigins("http://localhost", "http://localhost:4200");
                 });
             });
