@@ -12,7 +12,6 @@ import { AlertService } from 'src/app/shared/alert.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { Location } from '@angular/common';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-personagem-form',
@@ -23,8 +22,6 @@ export class PersonagemFormComponent implements OnInit {
   personagem = new Personagem();
   form: FormGroup;
   submitted: boolean = false;
-
-  @Input() filmeId: Guid;
 
   constructor(
     private fb: FormBuilder,
@@ -43,25 +40,31 @@ export class PersonagemFormComponent implements OnInit {
       poderes: [null],
       filmeID: [Guid.EMPTY, Validators.required],
     });
+
+      // this.route.paramMap.subscribe((params: ParamMap) => {
+      //   const id = params.get('id');
+      //   console.log(id);
+      //   this.onSubmit(Guid.parse(id ? id : Guid.create().toString()));
+      // });
   }
 
   public onSubmit() {
     this.submitted = true;
-    console.log(this.filmeId);
+ //   console.log(filmeId);
     console.log(this.form.value);
     if (this.form.valid) {
-      this.form.patchValue({filmeID: this.filmeId});
+    //  this.form.patchValue({filmeID: filmeId});
       console.log("preenchido"+this.form.value);
     console.log(this.form.value);
-      this.personagemService.Cadastrar(this.form.value).subscribe(
-        (success) => {
-          this.alertService.showAlertSuccess('Cadastrado com sucesso');
-          this.location.go('personagens');
-        },
-        (error) =>
-          this.alertService.showAlertDanger('Erro ao cadastrar um novo filme')
-      );
-    }
+    //   this.personagemService.Cadastrar(this.form.value).subscribe(
+    //     (success) => {
+    //       this.alertService.showAlertSuccess('Cadastrado com sucesso');
+    //       this.location.go('personagens');
+    //     },
+    //     (error) =>
+    //       this.alertService.showAlertDanger('Erro ao cadastrar um novo filme')
+    //   );
+     }
     console.log("submit");
   }
 

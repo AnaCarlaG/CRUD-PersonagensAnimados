@@ -30,7 +30,7 @@ export class FilmeComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal: TemplateRef<any>;
   @ViewChild('adicionarPersonagem') adicionarPersonagem: TemplateRef<any>;
 
-  personagemFormComponent:PersonagemFormComponent;
+  //@Output() filmeId = new EventEmitter();
 
   id: any;
 
@@ -44,20 +44,24 @@ export class FilmeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.filmes$ = this.filmeService.ObterTodos();
+    this.filmes$ = this.filmeService.ObterTodos().pipe(catchError(error => {
+      console.log(error);
+      return empty();
+    }));
 
     this.onRefresh();
   }
 
   onEdit(id: Guid) {
-
     this.router.navigate(['editarfilme', id]);
   }
   onDelete(id: Guid) {
     this.id = id;
     this.deleModalRef= this.modalService.show(this.deleteModal, {class: 'modal-sm'});
   }
-  onAdicionarPersonagem(){
+  onAdicionarPersonagem(id: Guid){
+   console.log(id);
+    //this.filmeId.emit(id.toString());
     this.persoModalRef= this.modalService.show(this.adicionarPersonagem, {class: 'modal-lg'});
   }
   onRefresh(){
@@ -81,11 +85,9 @@ export class FilmeComponent implements OnInit {
     this.deleModalRef.hide();
   }
   onSavePersonagem(){
-    this.personagemFormComponent.onSubmit(this.id);
     this.persoModalRef.hide();
   }
   onCancel(){
-    this.personagemFormComponent.onCancel();
     this.persoModalRef.hide();
   }
 }

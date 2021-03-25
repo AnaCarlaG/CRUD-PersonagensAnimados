@@ -83,8 +83,8 @@
 
     <ng-template #adicionarPersonagem>
       <div class="modal-body text-center">
-        <app-personagem-form></app-personagem-form>
-        <div style="margin-bottom: 15%; text-align: end;">
+        <app-personagem-form (onSubmit)="($event)"></app-personagem-form>
+        <!-- <div style="margin-bottom: 15%; text-align: end;">
           <button
             style="margin-right: 15px"
             type="button"
@@ -96,7 +96,7 @@
           <button type="button" class="btn btn-default" style="margin-right: 15px;" (click)="onCancel()">
             Cancelar
           </button>
-        </div>
+        </div> -->
       </div>
     </ng-template>
   </div>

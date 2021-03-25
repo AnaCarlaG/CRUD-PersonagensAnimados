@@ -13,12 +13,12 @@ export class PersonagemService extends BaseService {
   public header: HttpHeaders = new HttpHeaders();
 
   constructor(http: HttpClient) {
-    super(http, '/api/Filme');
+    super(http, '/api/Personagem');
   }
 
   //Get
   public ObterTodos() {
-    return this.http.get(this.ApiURL).pipe(delay(3000));
+    return this.http.get<Personagem[]>(this.ApiURL).pipe(delay(3000), catchError(this.handleError));
   }
 
   public ObterPorId(id: Guid) {

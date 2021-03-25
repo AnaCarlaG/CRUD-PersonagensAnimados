@@ -12,7 +12,8 @@ import { Guid } from 'guid-typescript';
 @Component({
   selector: 'app-personagem',
   templateUrl: './personagem.component.html',
-  styleUrls: ['./personagem.component.scss']
+  styleUrls: ['./personagem.component.scss'],
+  preserveWhitespaces: true
 })
 export class PersonagemComponent implements OnInit {
   personagem$: Observable<Personagem[]> = new Observable();
@@ -26,19 +27,18 @@ export class PersonagemComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private alertService: AlertService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit(): void {
-
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
-      console.log(id);
-      const filme$ = this.personagemService.ObterPersonagensFilme(
-        Guid.parse(id ? id : Guid.create().toString())
-      );
-    });
-
     this.onRefresh();
+
+    this.personagem$ = this.personagemService.ObterTodos().pipe(
+      catchError((error) => {
+        console.log(error);
+        return empty();
+      })
+    );
   }
 
   onEdit(id: Guid) {
@@ -47,27 +47,28 @@ export class PersonagemComponent implements OnInit {
 
   onDelete(id: Guid) {
     this.id = id;
-    this.deleModalRef= this.modalService.show(this.deleteModal, {class: 'modal-sm'});
+    this.deleModalRef = this.modalService.show(this.deleteModal, {
+      class: 'modal-sm',
+    });
   }
-  onRefresh(){
-   // this.personagem$ = this.personagemService.ObterTodos();
-    }
-
-  onConfirmDelete(){
-      this.personagemService.Delete(this.id).subscribe(
-        success => {
-          this.deleModalRef.hide();
-          this.onRefresh();
-        },
-        error => {
-          this.alertService.showAlertDanger("Erro ao tentar deletar");
-          this.deleModalRef.hide();
-        }
-      );
+  onRefresh() {
+    this.personagem$ = this.personagemService.ObterTodos();
   }
 
-  onDeclineDelete(){
+  onConfirmDelete() {
+    this.personagemService.Delete(this.id).subscribe(
+      (success) => {
+        this.deleModalRef.hide();
+        this.onRefresh();
+      },
+      (error) => {
+        this.alertService.showAlertDanger('Erro ao tentar deletar');
+        this.deleModalRef.hide();
+      }
+    );
+  }
+
+  onDeclineDelete() {
     this.deleModalRef.hide();
   }
-
 }
