@@ -30,7 +30,7 @@ export class FilmeComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal: TemplateRef<any>;
   @ViewChild('adicionarPersonagem') adicionarPersonagem: TemplateRef<any>;
 
-  form:PersonagemFormComponent;
+  personagemFormComponent:PersonagemFormComponent;
 
   id: any;
 
@@ -58,7 +58,7 @@ export class FilmeComponent implements OnInit {
     this.deleModalRef= this.modalService.show(this.deleteModal, {class: 'modal-sm'});
   }
   onAdicionarPersonagem(){
-    this.persoModalRef= this.modalService.show(this.adicionarPersonagem, {class: 'modal-sm'});
+    this.persoModalRef= this.modalService.show(this.adicionarPersonagem, {class: 'modal-lg'});
   }
   onRefresh(){
     this.filmes$ = this.filmeService.ObterTodos();
@@ -81,11 +81,11 @@ export class FilmeComponent implements OnInit {
     this.deleModalRef.hide();
   }
   onSavePersonagem(){
-    this.form.onSubmit(this.id);
+    this.personagemFormComponent.onSubmit(this.id);
     this.persoModalRef.hide();
   }
   onCancel(){
-    this.form.onCancel();
+    this.personagemFormComponent.onCancel();
     this.persoModalRef.hide();
   }
 }

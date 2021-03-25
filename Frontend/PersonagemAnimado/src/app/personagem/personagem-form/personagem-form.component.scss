@@ -1,13 +1,16 @@
-#formPersonagem{
+#formPersonagem {
   padding-top: 8%;
   padding-bottom: 8%;
-  padding-left: 35%;
-  background-color: #F8F8FF70
-}
-#formPersonagem.div{
-  width: 50%;
-   background-color: #fff;
-  padding: 20px; border-radius: 3px;
-   border: 1px solid lightgray;
+  padding-left: 22%;
+  margin: auto;
+  background-color: #f8f8ff70 !important;
 }
 
+#formPersonagem.div {
+  margin: auto;
+  width: 50%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}

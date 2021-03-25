@@ -4,7 +4,7 @@
   class="row g-3 needs-validation"
   novalidate
 >
-  <div class="col-md-7">
+  <div class="col-md-8" style="text-align: start">
     <label for="nome" class="form-label">Nome do filme</label>
     <input
       type="text"
@@ -21,8 +21,8 @@
       Por favor informe um nome de um personagem
     </div>
     <br />
-    <div class="col-md-7">
-      <label for="genero" class="form-label">Gênero</label>
+    <div class="col-md-8" style="text-align: start">
+      <label for="genero" class="form-label">Gênero do personagem</label>
       <select
         type="text"
         class="form-control"
@@ -36,7 +36,7 @@
       </select>
     </div>
     <br />
-    <div class="col-md-4">
+    <div class="col-md-12">
       <label for="ano" class="form-label">Poderes</label>
       <input
         type="text"
@@ -50,7 +50,7 @@
     <div class="col-md-7">
       <label for="descricao" class="form-label">Descrição</label>
       <textarea
-        style="resize: none; display: flex"
+        style="resize: none; display: flex; text-align: start"
         type="text"
         size="100"
         class="form-control"
@@ -67,5 +67,23 @@
       </div>
     </div>
     <br />
+    <div style="margin-top: 1%; text-align: end">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="margin-right: 15px"
+        (click)="onSubmit()"
+      >
+        Salvar
+      </button>
+      <button
+        type="button"
+        class="btn btn-dafault"
+        style="margin-right: 15px"
+        (click)="onCancel()"
+      >
+        Cancelar
+      </button>
+    </div>
   </div>
 </form>

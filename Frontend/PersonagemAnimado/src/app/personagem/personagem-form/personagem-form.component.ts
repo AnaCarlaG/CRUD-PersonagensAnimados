@@ -24,6 +24,8 @@ export class PersonagemFormComponent implements OnInit {
   form: FormGroup;
   submitted: boolean = false;
 
+  @Input() filmeId: Guid;
+
   constructor(
     private fb: FormBuilder,
     private personagemService: PersonagemService,
@@ -43,11 +45,14 @@ export class PersonagemFormComponent implements OnInit {
     });
   }
 
-  public onSubmit(filmeId: Guid) {
+  public onSubmit() {
     this.submitted = true;
+    console.log(this.filmeId);
     console.log(this.form.value);
     if (this.form.valid) {
-      this.form.patchValue({filmeID: filmeId});
+      this.form.patchValue({filmeID: this.filmeId});
+      console.log("preenchido"+this.form.value);
+    console.log(this.form.value);
       this.personagemService.Cadastrar(this.form.value).subscribe(
         (success) => {
           this.alertService.showAlertSuccess('Cadastrado com sucesso');
@@ -57,11 +62,13 @@ export class PersonagemFormComponent implements OnInit {
           this.alertService.showAlertDanger('Erro ao cadastrar um novo filme')
       );
     }
+    console.log("submit");
   }
 
   onCancel() {
     this.submitted = false;
     this.form.reset();
+    this.location.back();
   }
 
   hasError(field: string) {
