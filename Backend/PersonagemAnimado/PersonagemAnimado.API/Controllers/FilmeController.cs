@@ -42,13 +42,22 @@ namespace PersonagemAnimado.API.Controllers
         }
 
         [HttpGet]
+        [Route("obter-personagens")]
+        public IEnumerable<FilmePersonagemVM> BuscarTodosComPersonagem()
+        {
+            var result = _filmeService.BuscarTodosComPersonagem();
+            return result;
+        }
+
+        [HttpGet]
         [Route("obter-por-id/{id}")]
         public FilmeVM ObterPorId(Guid id)
         {
             return _filmeService.ObterPorId(id);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {

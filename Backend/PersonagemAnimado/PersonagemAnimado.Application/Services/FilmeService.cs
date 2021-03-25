@@ -34,8 +34,14 @@ namespace PersonagemAnimado.Application.Services
         public IList<FilmeVM> ObterTodos()
         {
 
-            IList<Filme> lista = _filmeRepository.BuscarTodosComPersonagem().ToList();            
+            IList<Filme> lista = _filmeRepository.BuscarTodos().ToList();            
             return _mapper.Map<List<FilmeVM>>(lista);
+        }
+        public IEnumerable<FilmePersonagemVM> BuscarTodosComPersonagem()
+        {
+
+            IEnumerable<Filme> lista = _filmeRepository.BuscarTodosComPersonagem();
+            return _mapper.Map<IEnumerable<FilmePersonagemVM>>(lista);
         }
 
         public void Persistir(FilmeVM filmeVM)

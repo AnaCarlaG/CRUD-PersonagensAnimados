@@ -12,6 +12,7 @@ namespace PersonagemAnimado.Application.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<FilmeVM, Filme>();
+            CreateMap<FilmePersonagemVM,Filme>();
             CreateMap<PersonagemVM, Personagem>();
         }
     }

@@ -1,9 +1,11 @@
-﻿using PersonagemAnimado.Application.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonagemAnimado.Application.Repository;
 using PersonagemAnimado.Domain.Model;
 using PersonagemAnimado.Infraestrutura.Data;
 using PersonagemAnimado.Infraestrutura.Repository.Base;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PersonagemAnimado.Infraestrutura.Repository

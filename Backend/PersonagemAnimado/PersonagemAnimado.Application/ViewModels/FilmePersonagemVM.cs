@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace PersonagemAnimado.Application.ViewModels
 {
-   public class FilmeVM
+   public class FilmePersonagemVM
     {
         public Guid Id { get; set; }
         [Required]
@@ -16,5 +16,7 @@ namespace PersonagemAnimado.Application.ViewModels
         [Required]
         public string Descricao { get; set; }
         public int? ano { get; set; }
+
+        public List<PersonagemVM> Personagens { get; set; }
     }
 }

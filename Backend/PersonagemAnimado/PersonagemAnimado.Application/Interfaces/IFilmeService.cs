@@ -15,5 +15,7 @@ namespace PersonagemAnimado.Application.Interfaces
         void Persistir(FilmeVM filmeVM);
 
         void Delete(Guid id);
+
+        IEnumerable<FilmePersonagemVM> BuscarTodosComPersonagem();
     }
 }

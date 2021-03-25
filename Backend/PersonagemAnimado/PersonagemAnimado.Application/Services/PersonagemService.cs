@@ -35,7 +35,6 @@ namespace PersonagemAnimado.Application.Services
             var lista = _personagemRepository.BuscarTodos();
             return _mapper.Map<IEnumerable<PersonagemVM>>(lista);
         }
-
         public void Persistir(PersonagemVM personagemVM)
         {
             var personagem = _mapper.Map<Personagem>(personagemVM);
