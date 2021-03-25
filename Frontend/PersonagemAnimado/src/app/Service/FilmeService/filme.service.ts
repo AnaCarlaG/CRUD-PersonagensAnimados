@@ -11,7 +11,6 @@ import {tap, delay, take, catchError} from 'rxjs/operators';
 })
 export class FilmeService extends BaseService {
 
-
   public header: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
 
@@ -21,11 +20,14 @@ export class FilmeService extends BaseService {
 
   //Get
   public ObterTodos(){
-    return this.http.get<Filme[]>(this.ApiURL).pipe(delay(2000));
+    return this.http.get<Filme[]>(this.ApiURL).pipe(delay(2000), catchError(this.handleError));
   }
 
   public ObterPorId(id: Guid) {
     return this.http.get(this.ApiURL+"obter-por-id/" + id).pipe(take(1));
+  }
+  public ObterFilmesComPersonagens(id: Guid) {
+    return this.http.get(this.ApiURL+"obter-personagens").pipe(take(1),delay(2000), catchError(this.handleError));
   }
   //Post
   public Cadastrar(filme: Filme)

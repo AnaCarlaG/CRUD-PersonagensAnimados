@@ -1,0 +1,71 @@
+<form
+  id="formPersonagem"
+  [formGroup]="form"
+  class="row g-3 needs-validation"
+  novalidate
+>
+  <div class="col-md-7">
+    <label for="nome" class="form-label">Nome do filme</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nome"
+      placeholder="Nome do filme"
+      formControlName="nome"
+      [ngClass]="{ 'is-invalid': submitted && hasError('nome') }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="hasError('nome') && hasError('nome')['required']"
+    >
+      Por favor informe um nome de um personagem
+    </div>
+    <br />
+    <div class="col-md-7">
+      <label for="genero" class="form-label">Gênero</label>
+      <select
+        type="text"
+        class="form-control"
+        id="genero"
+        placeholder="Genero do filme"
+        formControlName="genero"
+      >
+        <option value="feminino">Feminino</option>
+        <option value="masculino">Masculino</option>
+        <option value="outro">Outro</option>
+      </select>
+    </div>
+    <br />
+    <div class="col-md-4">
+      <label for="ano" class="form-label">Poderes</label>
+      <input
+        type="text"
+        class="form-control"
+        id="poderes"
+        placeholder="Poderes"
+        formControlName="poderes"
+      />
+    </div>
+    <br />
+    <div class="col-md-7">
+      <label for="descricao" class="form-label">Descrição</label>
+      <textarea
+        style="resize: none; display: flex"
+        type="text"
+        size="100"
+        class="form-control"
+        id="descricao"
+        placeholder="Descricao do filme"
+        formControlName="descricao"
+        [ngClass]="{ 'is-invalid': submitted && hasError('genero') }"
+      ></textarea>
+      <div
+        class="invalid-feedback"
+        *ngIf="hasError('descricao') && hasError('descricao')['required']"
+      >
+        Por favor informe uma descrição do personagem
+      </div>
+    </div>
+    <br />
+  </div>
+</form>

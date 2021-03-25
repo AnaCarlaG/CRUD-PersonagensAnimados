@@ -1,10 +1,10 @@
 import { Guid } from "guid-typescript";
 
-export interface Personagem{
-    id: string;
+export class Personagem{
+    id: Guid;
     nome:string;
     genero:string;
     descricao:string;
     poderes:string;
-    filmeID: string;
+    filmeID: Guid;
 }

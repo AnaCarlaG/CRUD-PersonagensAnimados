@@ -1,10 +1,10 @@
 <form
+id="formFilme"
   [formGroup]="form"
   class="row g-3 needs-validation"
   novalidate
-  style="padding-top: 8%"
 >
-  <div class="col-md-4">
+  <div class="col-md-7">
     <label for="nome" class="form-label">Nome do filme</label>
     <input
       type="text"
@@ -21,7 +21,7 @@
       Por favor informe um nome de um filme
     </div>
     <br />
-    <div class="col-md-4">
+    <div class="col-md-7" >
       <label for="genero" class="form-label">Genero</label>
       <input
         type="text"
@@ -34,13 +34,10 @@
       <div class="invalid-feedback" *ngIf="hasError('genero') && hasError('genero')['required']">Por favor informe um genero de um filme</div>
     </div>
     <br />
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="ano" class="form-label">Ano</label>
       <input
-        type="text"
-        [patterns]="customPatterns"
-        mask="0000"
-        [allowNegativeNumbers]="false"
+        type="number"
         class="form-control"
         id="ano"
         placeholder="Ano do filme"
@@ -48,24 +45,25 @@
       />
     </div>
     <br />
-    <div class="col-md-6">
+    <div class="col-md-7">
       <label for="descricao" class="form-label">Descricao</label>
-      <input
+      <textarea style="resize: none; display: flex;"
         type="text"
+        size="100"
         class="form-control"
         id="descricao"
         placeholder="Descricao do filme"
         formControlName="descricao"
         [ngClass]="{ 'is-invalid': submitted && hasError('genero') }"
-      />
+        ></textarea>
       <div class="invalid-feedback" *ngIf="hasError('descricao') && hasError('descricao')['required']">Por favor informe uma descrição do filme</div>
     </div>
     <br />
-    <div style="margin-top: 1%">
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+    <div style="margin-top: 1%; text-align: end;">
+      <button type="submit" class="btn btn-primary"style="margin-right: 15px;" (click)="onSubmit()">
         Salvar
       </button>
-      <button type="button" class="btn btn-dafault" (click)="onCancel()">
+      <button type="button" class="btn btn-dafault"style="margin-right: 15px;" (click)="onCancel()">
         Cancelar
       </button>
     </div>

@@ -1,0 +1,55 @@
+<div id="tabelaFilme" class="card">
+  <div class="card-header" style="padding-top: 8%;">
+      <div class="float-left">
+          <h4>Lista de Personagens</h4>
+      </div>
+      <div class="float-right">
+        <a class="btn btn-primary" type="button" href="/">Adicionar</a>
+        <a class="btn btn-primary" type="button" href="/filmes">Voltar a lista de filmes</a>
+      </div>
+  </div>
+  <div class="card-body">
+      <table class="table table-hover" *ngIf="personagem$ | async as personagens; else loading">
+          <thead>
+              <tr>
+                  <th>Personagem</th>
+                  <th>Gênero</th>
+                  <th>Descrição</th>
+                  <th>Poderes</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of personagens">
+                  <td>{{item.nome}}</td>
+                  <td>{{item.genero}}</td>
+                  <td>{{item.descricao}}</td>
+                  <td>
+                      <span class="float-right">
+                          <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit(item.id)">Atualizar</button>
+                          <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete(item.id)">Remover</button>
+                      </span>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <<ng-template #loading>
+          <div *ngIf="error$ | async; else loadingNoError">
+              Não há nenhum personagem cadastrado.
+          </div>
+          <<ng-template #loadingNoError>
+          <span> Carregando personagens... </span>
+          </ng-template>
+      </ng-template>
+
+      <ng-template #deleteModal>
+        <div class="modal-body text-center">
+          <p>Tem certeza que deseja deletar?</p>
+          <button type="button" class="btn btn-default" (click)="onConfirmDelete()" >Sim</button>
+          <button type="button" class="btn btn-primary" (click)="onDeclineDelete()" >Não</button>
+        </div>
+      </ng-template>
+  </div>
+</div>
+
+

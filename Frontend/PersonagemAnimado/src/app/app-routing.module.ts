@@ -1,3 +1,4 @@
+import { PersonagemComponent } from './personagem/personagem.component';
 import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,6 +20,9 @@ const routes: Routes = [
   },
   {
     path:'editarfilme/:id', component: FilmeFormComponent
+  },
+  {
+    path:'personagens', component: PersonagemComponent
   }
 ];
 

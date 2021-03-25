@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Guid } from 'guid-typescript';
-import { error } from 'selenium-webdriver';
 import { Filme } from 'src/app/Model/Filme.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -30,7 +29,7 @@ export class FilmeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      id:[null],
+      id: Guid.EMPTY,
       nome: [null, [Validators.required]],
       genero: [null, [Validators.required]],
       descricao: [null, [Validators.required]],
@@ -60,7 +59,6 @@ export class FilmeFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.form.value);
     if (this.form.valid) {
       this.filmeService.Cadastrar(this.form.value).subscribe(
         (success) => {
@@ -70,7 +68,6 @@ export class FilmeFormComponent implements OnInit {
         (error) =>
           this.alertService.showAlertDanger('Erro ao cadastrar um novo filme')
       );
-      console.log('submit');
     }
   }
 

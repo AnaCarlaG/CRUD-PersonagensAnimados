@@ -20,6 +20,8 @@ import { SharedModule } from './shared/shared.module';
 import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
+import { PersonagemComponent } from './personagem/personagem.component';
+import { PersonagemFormComponent } from './personagem/personagem-form/personagem-form.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -33,6 +35,8 @@ const maskConfig: Partial<IConfig> = {
     FilmeComponent,
     GeneroComponent,
     FilmeFormComponent,
+    PersonagemComponent,
+    PersonagemFormComponent,
   ],
   imports: [
     BrowserModule,
