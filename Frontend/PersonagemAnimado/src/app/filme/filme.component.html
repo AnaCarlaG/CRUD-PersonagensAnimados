@@ -42,8 +42,8 @@
                 Remover
               </button>
               <button
-                class="btn btn-outline-secondary mb-1 btn-sm {{ item.genero }}"
-                (click)="onAdicionarPersonagem(item.id)"
+                class="btn btn-outline-secondary mb-1 btn-sm"
+                (click)="onAdicionarPersonagem(item.id, item.genero)"
               >
                 Adicionar personagem do filme
               </button>
@@ -83,20 +83,7 @@
 
     <ng-template #adicionarPersonagem>
       <div class="modal-body text-center">
-        <app-personagem-form (onSubmit)="($event)"></app-personagem-form>
-        <!-- <div style="margin-bottom: 15%; text-align: end;">
-          <button
-            style="margin-right: 15px"
-            type="button"
-            class="btn btn-primary"
-            (click)="onSavePersonagem()"
-          >
-            Salvar Personagem
-          </button>
-          <button type="button" class="btn btn-default" style="margin-right: 15px;" (click)="onCancel()">
-            Cancelar
-          </button>
-        </div> -->
+        <app-personagem-form></app-personagem-form>
       </div>
     </ng-template>
   </div>

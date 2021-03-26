@@ -14,6 +14,7 @@ import { Filme } from '../Model/Filme.model';
 import { FilmeService } from '../Service/FilmeService/filme.service';
 import { AlertComponent } from '../shared/alert/alert.component';
 import { AlertService } from '../shared/alert.service';
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-filme',
   templateUrl: './filme.component.html',
@@ -30,7 +31,7 @@ export class FilmeComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal: TemplateRef<any>;
   @ViewChild('adicionarPersonagem') adicionarPersonagem: TemplateRef<any>;
 
-  //@Output() filmeId = new EventEmitter();
+  @Output() filmeId = new EventEmitter();
 
   id: any;
 
@@ -59,9 +60,10 @@ export class FilmeComponent implements OnInit {
     this.id = id;
     this.deleModalRef= this.modalService.show(this.deleteModal, {class: 'modal-sm'});
   }
-  onAdicionarPersonagem(id: Guid){
-   console.log(id);
-    //this.filmeId.emit(id.toString());
+  onAdicionarPersonagem(id: Guid, genero: string){
+    localStorage.setItem('filmeId', JSON.stringify(id));
+    localStorage.setItem('genero', JSON.stringify(genero));
+
     this.persoModalRef= this.modalService.show(this.adicionarPersonagem, {class: 'modal-lg'});
   }
   onRefresh(){

@@ -13,7 +13,7 @@ export class PersonagemService extends BaseService {
   public header: HttpHeaders = new HttpHeaders();
 
   constructor(http: HttpClient) {
-    super(http, '/api/Personagem');
+    super(http, 'api/Personagem');
   }
 
   //Get

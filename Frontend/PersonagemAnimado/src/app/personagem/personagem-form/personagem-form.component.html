@@ -3,8 +3,9 @@
   [formGroup]="form"
   class="row g-3 needs-validation"
   novalidate
+  class ="{{genero}}"
 >
-  <div class="col-md-8" style="text-align: start">
+  <div class="col-md-8 " style="text-align: start;">
     <label for="nome" class="form-label">Nome do filme</label>
     <input
       type="text"
@@ -47,10 +48,10 @@
       />
     </div>
     <br />
-    <div class="col-md-7">
+    <div class="col-md-12">
       <label for="descricao" class="form-label">Descrição</label>
       <textarea
-        style="resize: none; display: flex; text-align: start"
+        style="resize: none; display: flex; text-align: start" rows="3" cols="3"
         type="text"
         size="100"
         class="form-control"
