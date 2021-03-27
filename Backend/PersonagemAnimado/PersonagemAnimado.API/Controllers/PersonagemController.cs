@@ -25,7 +25,7 @@ namespace PersonagemAnimado.API.Controllers
             try
             {
                 _personagemService.Persistir(personagemVM);
-                return Created("", personagemVM);
+                return Ok(personagemVM);
             }
             catch (Exception ex)
             {
@@ -44,7 +44,8 @@ namespace PersonagemAnimado.API.Controllers
             return _personagemService.ObterPorId(id);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromRoute] Guid id) 
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(Guid id) 
         {
             try
             {

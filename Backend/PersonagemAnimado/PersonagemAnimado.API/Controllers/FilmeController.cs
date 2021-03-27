@@ -27,7 +27,7 @@ namespace PersonagemAnimado.API.Controllers
             try
             {
                 _filmeService.Persistir(filmeVM);
-                return Created("", filmeVM);
+                return Ok(filmeVM);
             }
             catch (Exception ex)
             {
