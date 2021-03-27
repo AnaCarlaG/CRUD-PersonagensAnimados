@@ -1,3 +1,4 @@
+import { PersonagemFormComponent } from './personagem/personagem-form/personagem-form.component';
 import { PersonagemComponent } from './personagem/personagem.component';
 import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,9 @@ const routes: Routes = [
   },
   {
     path:'personagens', component: PersonagemComponent
+  },
+  {
+    path:'editarPersonagem/:id', component: PersonagemFormComponent
   }
 ];
 

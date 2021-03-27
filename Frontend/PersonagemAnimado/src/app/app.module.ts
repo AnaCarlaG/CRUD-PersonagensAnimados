@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { FilmeComponent } from './filme/filme.component';
 import { PersonagemComponent } from './personagem/personagem.component';
 import { PersonagemFormComponent } from './personagem/personagem-form/personagem-form.component';
+import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 
 //Service
 import { FilmeService } from './Service/FilmeService/filme.service';
@@ -21,7 +22,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
-import { FilmeFormComponent } from './filme/filme-form/filme-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
 
