@@ -14,7 +14,7 @@
 
 
 * API
-  * Api construída em .net core com a estrutura seguindo alguns princípios da modelagem de software DDD, como API, Application, Domain, Infraestrutura e alguns designs patterns, como por exemplo Repository Pattern ,IOC, Injeção de Dependências.
+  * Api construída em .net core com a estrutura seguindo alguns princípios da modelagem de software DDD, como API, Application, Domain, Infraestrutura e alguns designs patterns, como por exemplo Repository Pattern ,Injeção de Dependências.
   * Foi usada as configurações de auto mapper para poder converter as model do projeto de domain com as view model da aplicação para não deixar os dados persistidos no banco e o cors para poder usar o http usando o certificado SSL do front pudesse fazer as requisições para a API persistir, consultar e remover os dados que o front mandar nas requests e mostrar as responses  da API nas telas do front. 
 
 <img src="C:\Users\solar\Desktop\b6112b27-a350-4579-89c7-2c8c1a709242.jpg" style="zoom:50%;" />
@@ -28,7 +28,7 @@
 
 2. Se for gerar o migrations, seta-se no projeto da Infraestura e dá o comando **Add-Migrations < nome da migração >** criando então a pasta Migrations com o script para gerar o banco.
 
-3. Se for para executar o script já gerado pelo migration para então gerar as tabelas no banco, dá o comando **Update-Database**
+3. Se for para executar o script já gerado pelo migration que se encontra na pasta Migrations na aplicação,  dá o comando **Update-Database**  para gerar as tabelas.
 
    ------
 
