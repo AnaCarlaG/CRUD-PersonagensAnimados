@@ -1,16 +1,9 @@
 import { PersonagemService } from './../../Service/PersonagemService/personagem.service';
 import { Personagem } from './../../Model/Personagem.model';
-import {
-  Component,
-  Input,
-  OnInit,
-  SimpleChange,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/shared/alert.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { Location } from '@angular/common';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -25,9 +18,9 @@ export class PersonagemFormComponent implements OnInit {
   form: FormGroup;
   submitted: boolean = false;
   genero: any = localStorage
-  .getItem('genero')
-  ?.replace('"', '')
-  .replace('"', '');;
+    .getItem('genero')
+    ?.replace('"', '')
+    .replace('"', '');
 
   constructor(
     private fb: FormBuilder,
@@ -36,10 +29,9 @@ export class PersonagemFormComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private modalService: BsModalService,
+    private router: Router
   ) {}
-  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    console.log(changes);
-  }
+
   ngOnInit(): void {
     this.form = this.fb.group({
       id: Guid.EMPTY,
@@ -50,11 +42,25 @@ export class PersonagemFormComponent implements OnInit {
       filmeID: [Guid.EMPTY, Validators.required],
     });
 
-    // this.route.paramMap.subscribe((params: ParamMap) => {
-    //   const id = params.get('id');
-    //   console.log(id);
-    //   this.onSubmit(Guid.parse(id ? id : Guid.create().toString()));
-    // });
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const id = params.get('id');
+      const personagem$ = this.personagemService.ObterPorId(
+        Guid.parse(id ? id : Guid.create().toString())
+      );
+      personagem$.subscribe((personagem) => {
+        this.updateForm(personagem);
+      });
+    });
+  }
+
+  updateForm(personagem: any) {
+    this.form.patchValue({
+      id: personagem.id,
+      nome: personagem.nome,
+      genero: personagem.genero,
+      descricao: personagem.descricao,
+      ano: personagem.ano,
+    });
   }
 
   public onSubmit() {
@@ -68,19 +74,25 @@ export class PersonagemFormComponent implements OnInit {
       this.form.patchValue({ filmeID: filmeId });
       this.personagemService.Cadastrar(this.form.value).subscribe(
         (success) => {
-          this.alertService.showAlertSuccess('Cadastrado com sucesso');
+          this.alertService.showAlertSuccess('Operação feita com sucesso');
+
+          if(this.router.url == ("/editarPersonagem/"+this.form.get('id')?.value)) return this.location.back();
           this.modalService.hide();
         },
         (error) =>
-          this.alertService.showAlertDanger('Erro ao cadastrar um novo filme')
+          this.alertService.showAlertDanger('Erro na operação')
       );
     }
+    console.log('submit');
   }
 
   onCancel() {
     this.submitted = false;
+    if(this.router.url == ("/editarPersonagem/"+this.form.get('id')?.value)) return this.location.back();
     this.form.reset();
-    this.modalService.hide()
+    this.modalService.hide();
+
+
   }
 
   hasError(field: string) {

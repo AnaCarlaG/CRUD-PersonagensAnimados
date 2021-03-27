@@ -62,11 +62,11 @@ export class FilmeFormComponent implements OnInit {
     if (this.form.valid) {
       this.filmeService.Cadastrar(this.form.value).subscribe(
         (success) => {
-          this.alertService.showAlertSuccess('Cadastrado com sucesso');
+          this.alertService.showAlertSuccess('Operação feita com sucesso');
           this.location.back();
         },
         (error) =>
-          this.alertService.showAlertDanger('Erro ao cadastrar um novo filme')
+          this.alertService.showAlertDanger('Erro na operação')
       );
     }
   }

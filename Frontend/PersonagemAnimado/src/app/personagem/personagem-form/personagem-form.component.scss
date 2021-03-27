@@ -14,21 +14,60 @@
   border: 1px solid lightgray;
 }
 
-.romance{
-  background-color: palevioletred !important;
-  //background: #FFFFFF url("pasta/Imagem.jpg") no-repeat right top fixed;
+.romance {
+  background-color: #ffdab9 !important;
+
+  background-image: url("../../../assets/Background Genero/Romance.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top;
+  background-position: 50% 35%;
+  color: black;
+  font-weight: bold;
 }
 
-.comedia{
-  //azul
+.comedia {
+  background-color: #b8e1e9 !important;
 
+  background-image: url("../../../assets/Background Genero/Comédia.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 1298px 702px;
+  background-position: 50% 35%;
+  font-weight: bold;
+  color: black;
 }
 
-.aventura{
-//verde
+.aventura {
+  //verde
+  background-color: #c8e9b8 !important;
+
+  background-image: url("../../../assets/Background Genero/Aventura.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 1298px 702px;
+  background-position: 50% 35%;
+  font-weight: bold;
+  color: black;
 }
 
-.terror{
+.terror {
   //cinza escuro
+  background-color: #444444 !important;
+  background-image: url("../../../assets/Background Genero/Terror.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 35%;
+  font-weight: bold;
+  color: white;
 }
+.ficcao {
+  background-color: #01011a !important;
+  background-image: url("../../../assets/Background Genero/Ficcção.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 1298px 702px;
 
+  font-weight: bold;
+  color: #fff;
+}

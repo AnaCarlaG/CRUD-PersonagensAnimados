@@ -31,9 +31,11 @@ id="formFilme"
         formControlName="genero"
         [ngClass]="{ 'is-invalid': submitted && hasError('genero') }"
       >
-      <option value="romance">Romance</option>
+      <option value="aventura">Aventura</option>
       <option value="comedia">Comédia</option>
-      <option value="Aventura">Aventura</option>
+      <option value="ficcao">Ficção científica</option>
+      <option value="romance">Romance</option>
+      <option value="terror">Terror</option>
     </select>
       <div class="invalid-feedback" *ngIf="hasError('genero') && hasError('genero')['required']">Por favor informe um genero de um filme</div>
     </div>
@@ -51,7 +53,7 @@ id="formFilme"
     <br />
     <div class="col-md-7">
       <label for="descricao" class="form-label">Descricao</label>
-      <textarea style="resize: none; display: flex;"
+      <textarea style="resize: none; display: flex;" rows="5" cols="8"
         type="text"
         size="100"
         class="form-control"

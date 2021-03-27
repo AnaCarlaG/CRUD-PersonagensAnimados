@@ -1,18 +1,14 @@
-import { PersonagemFormComponent } from './../personagem/personagem-form/personagem-form.component';
 import { Guid } from 'guid-typescript';
 import { Component, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 import {
   BsModalRef,
   BsModalService,
-  ModalContainerComponent,
 } from 'ngx-bootstrap/modal';
 import { empty, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Filme } from '../Model/Filme.model';
 import { FilmeService } from '../Service/FilmeService/filme.service';
-import { AlertComponent } from '../shared/alert/alert.component';
 import { AlertService } from '../shared/alert.service';
 import { EventEmitter } from '@angular/core';
 @Component({
@@ -38,7 +34,6 @@ export class FilmeComponent implements OnInit {
   constructor(
     private filmeService: FilmeService,
     private router: Router,
-    private route: ActivatedRoute,
     private alertService: AlertService,
     private modalService: BsModalService
   ) {}
@@ -56,10 +51,12 @@ export class FilmeComponent implements OnInit {
   onEdit(id: Guid) {
     this.router.navigate(['editarfilme', id]);
   }
+
   onDelete(id: Guid) {
     this.id = id;
     this.deleModalRef= this.modalService.show(this.deleteModal, {class: 'modal-sm'});
   }
+
   onAdicionarPersonagem(id: Guid, genero: string){
     localStorage.setItem('filmeId', JSON.stringify(id));
     localStorage.setItem('genero', JSON.stringify(genero));
@@ -85,11 +82,5 @@ export class FilmeComponent implements OnInit {
 
   onDeclineDelete(){
     this.deleModalRef.hide();
-  }
-  onSavePersonagem(){
-    this.persoModalRef.hide();
-  }
-  onCancel(){
-    this.persoModalRef.hide();
   }
 }

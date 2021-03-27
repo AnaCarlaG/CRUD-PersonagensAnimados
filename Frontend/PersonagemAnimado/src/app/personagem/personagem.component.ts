@@ -13,7 +13,7 @@ import { Guid } from 'guid-typescript';
   selector: 'app-personagem',
   templateUrl: './personagem.component.html',
   styleUrls: ['./personagem.component.scss'],
-  preserveWhitespaces: true
+  preserveWhitespaces: true,
 })
 export class PersonagemComponent implements OnInit {
   personagem$: Observable<Personagem[]> = new Observable();
@@ -31,17 +31,18 @@ export class PersonagemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.onRefresh();
-
     this.personagem$ = this.personagemService.ObterTodos().pipe(
       catchError((error) => {
         console.log(error);
         return empty();
       })
     );
+
+    this.onRefresh();
   }
 
   onEdit(id: Guid) {
+    console.log(id);
     this.router.navigate(['editarPersonagem', id]);
   }
 
@@ -56,6 +57,7 @@ export class PersonagemComponent implements OnInit {
   }
 
   onConfirmDelete() {
+    console.log(this.id);
     this.personagemService.Delete(this.id).subscribe(
       (success) => {
         this.deleModalRef.hide();
