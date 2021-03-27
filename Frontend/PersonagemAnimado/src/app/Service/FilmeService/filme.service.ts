@@ -15,7 +15,7 @@ export class FilmeService extends BaseService {
 
 
   constructor(http: HttpClient) {
-    super(http, 'api/Filme/')
+    super(http, 'api/Filme')
   }
 
   //Get
@@ -24,10 +24,10 @@ export class FilmeService extends BaseService {
   }
 
   public ObterPorId(id: Guid) {
-    return this.http.get(this.ApiURL+"obter-por-id/" + id).pipe(take(1));
+    return this.http.get(this.ApiURL+"/obter-por-id/" + id).pipe(take(1));
   }
   public ObterFilmesComPersonagens(id: Guid) {
-    return this.http.get(this.ApiURL+"obter-personagens").pipe(take(1),delay(2000), catchError(this.handleError));
+    return this.http.get(this.ApiURL+"/obter-personagens").pipe(take(1),delay(2000), catchError(this.handleError));
   }
   //Post
   public Cadastrar(filme: Filme)

@@ -9,7 +9,6 @@ import { Personagem } from 'src/app/Model/Personagem.model';
   providedIn: 'root',
 })
 export class PersonagemService extends BaseService {
-
   public header: HttpHeaders = new HttpHeaders();
 
   constructor(http: HttpClient) {
@@ -18,14 +17,13 @@ export class PersonagemService extends BaseService {
 
   //Get
   public ObterTodos() {
-    return this.http.get<Personagem[]>(this.ApiURL).pipe(delay(3000), catchError(this.handleError));
+    return this.http
+      .get<Personagem[]>(this.ApiURL)
+      .pipe(delay(3000), catchError(this.handleError));
   }
 
   public ObterPorId(id: Guid) {
-    return this.http.get(this.ApiURL + 'obter-por-id/' + id).pipe(take(1));
-  }
-  public ObterPersonagensFilme(filmeID: Guid) {
-    return this.http.get(this.ApiURL + 'obter-por-filmeID/' + filmeID).pipe(take(1), catchError(this.handleError));
+    return this.http.get(this.ApiURL + '/obter-por-id/' + id).pipe(take(1));
   }
 
   //Post
@@ -46,6 +44,6 @@ export class PersonagemService extends BaseService {
   }
   //Delete
   public Delete(id: Guid) {
-    return this.http.delete(this.ApiURL + id).pipe(take(1));
+    return this.http.delete(this.ApiURL + '/' + id).pipe(take(1));
   }
 }
