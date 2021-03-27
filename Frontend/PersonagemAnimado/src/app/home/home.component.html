@@ -1,11 +1,7 @@
-<ngb-carousel>
+<ngb-carousel id="carousel">
   <ng-template ngbSlide *ngFor="let filme of filmes">
     <div class="picsum-img-wrapper">
-      <img src="{{filme.img}}" alt="Random first slide">
-    </div>
-    <div class="carousel-caption">
-      <h3></h3>
-      <p></p>
+      <img src="{{filme.img}}">
     </div>
   </ng-template>
 </ngb-carousel>

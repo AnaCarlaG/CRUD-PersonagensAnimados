@@ -10,20 +10,22 @@ export class HomeComponent implements OnInit {
 
   filmes: any[] =
     [{
-      img: '../../assets/Caroussel/Animações Juntas.jpg'
+      img: '../../assets/Caroussel/demon-slayer-1920x450.jpg'
     },
     {
-      img: '../../assets/Caroussel/Animações Juntas 2.jpg'
+      img: '../../assets/Caroussel/Capa-Shirobako.jpg'
     },
     {
-      img: '../../assets/Caroussel/capa-series-animadas-disney.jpg'
-    },
-    {
-      img: '../../assets/Caroussel/Disney-Pixar-Easter-Eggs-Video-Connected-Universe.jpg'
-    }];
+      img: '../../assets/Caroussel/src_assets_frozen.jpg'
+    }
+  ];
   constructor(private _config: NgbCarouselConfig) { }
 
   ngOnInit(): void {
+    this._config.interval = 1000;
+    this._config.pauseOnHover = true;
+    this._config.showNavigationArrows = false;
+
   }
 
 }
