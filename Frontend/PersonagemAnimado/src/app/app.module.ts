@@ -24,6 +24,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -48,7 +49,8 @@ const maskConfig: Partial<IConfig> = {
     ModalModule.forRoot(),
     SharedModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(maskConfig)
+    NgxMaskModule.forRoot(maskConfig),
+    IvyCarouselModule
   ],
   providers: [FilmeService, PersonagemService],
   bootstrap: [AppComponent]
